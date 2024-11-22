@@ -1,0 +1,122 @@
+# Who Walks With You Matters: Perceiving Social Interactions with Groups for Pedestrian Trajectory Prediction.
+
+
+## Environment Configuration
+
+We recommend creating a virtual environment with packages in `requirements.txt` to test our code.
+
+```bash
+conda create -n your_env_name python==3.10
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+## Dataset Configuration
+
+The datasets (**ETH-UCY, SDD, NBA, nuScenes**) are preprocessed and provided in this code implementation.
+
+### Pre-trained Model Weights
+
+The pre-trained model weights of different datasets (**ETH-UCY, SDD, NBA, nuScenes**) are provided at:
+```none
+./weights/
+|___group_eth/
+|___group_hotel/
+|___group_nba50k/
+|___group_nuScenes_ov_best_of_5/
+|___group_nuScenes_ov_best_of_10/
+|___group_sdd/
+|___group_univ13/
+|___group_zara1/
+|___group_zara2/
+```
+Run the following command to evaluate these pre-trained weights:
+```bash
+python main.py --load ./weights/group_{dataset}
+```
+## Training
+Run the following command to train the **GPCC** model from the beginning:
+```bash
+python main.py --model gp_msn --split {dataset} --batchsize {batchsize} --lr {lr}
+```
+This command uses the original variation (v0 corresponding to the paper) GPCC model to train.
+Add args to train variational (corresponding to the ablation study in the paper) GPCC model.
+
+### Args
+- `--split` (short for `-s`): type=`str`, argtype=`static`.
+ The dataset split that used to train and evaluate. 
+ The default value is `zara1`.
+- `--gpu`: type=`str`, argtype=`temporary`.
+Speed up training or test if you have at least one NVidia GPU. If you have no GPUs or want to run the code on your CPU, please set it to `-1`. NOTE: It only supports training or testing on one GPU. 
+The default value is `0`.
+- `--epochs`: type=`int`, argtype=`static`.
+ Maximum training epochs. 
+ The default value is `500`.
+- `--batch_size` (short for `-bs`): type=`int`, argtype=`dynamic`.
+ Batch size when implementation. 
+ The default value is `5000`.
+- `--lr` (short for `-lr`): type=`float`, argtype=`static`.
+ Learning rate. 
+ The default value is `0.001`.
+- `--use_group`: type=`int`, argtype=`STATIC`.
+ Choose whether to use pedestrian groups when calculating Conception.
+ The default value is `1`.
+- `--view_angle`: type=`float`, argtype=`STATIC`.
+ Value of conception field of view (FOV).
+ The default value is `np.pi`.
+- `--use_view_angle`: type=`int`, argtype=`STATIC`.
+ Choose whether to use view angle in calculating Conception.
+ The default value is `1`.
+- `--use_pooling`: type=`int`, argtype=`STATIC`.
+ Choose whether to use pooling in calculating conception value. 
+ Only choose one between pooling and max.
+ The default value is `1`.
+- `--use_max`: type=`int`, argtype=`STATIC`.
+ Choose whether to use max in calculating conception value. 
+ Only choose one between pooling and max.
+ The default value is `0`.
+- `--output_units`: type=`int`, argtype=`STATIC`.
+ Set the number of the output units of trajectory encoding.
+ The default value is `32`.
+- `--use_velocity`: type=`int`, argtype=`STATIC`.
+Choose whether to use the velocity factor in the Conception.
+The default value is `1`.
+- `--use_distance`: type=`int`, argtype=`STATIC`.
+Choose whether to use the distance factor in the Conception.
+The default value is `1`.
+- `--use_move_dir`: type=`int`, argtype=`STATIC`.
+Choose whether to use the move direction factor in the Conception.
+The default value is `1`.
+- `--disable_conception`: type=`int`, argtype=`STATIC`.
+Choose whether to disable conception layer in the GroupModel.
+The default value is `0`.
+- `--generation_num`: type=`int`, argtype=`STATIC`.
+Number of multi-style generation.
+The default value is `20`.
+
+Add args above to train specific GPCC model as the following command:
+```bash
+python main.py --model gp_msn --split {dataset} --batchsize {batchsize} --lr {lr} --{Arg} arg --{Arg} arg ... --{Arg} arg
+```
+
+If no arg is detected, the model will use the default settings:
+```bash
+python main.py --model gp_msn
+```
+
+Continue to train from checkpoints or pre-trained weights using this command:
+```bash
+python main.py --restore_args {checkpoint/weight_file}
+```
+
+## Visualization
+Run the following command to run a visualization demo:
+```bash
+python playground/main.py
+```
+Reload model weights in the demo and visualize them.
+The output file is stored in `temp_files`.
+Release visualization code commented out in `gp_msn.py` and `conception.py` to see results of attention value and contribution ratio demonstrated in the paper.
+The output file is stored in `temp_files/gp`. 

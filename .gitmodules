@@ -1,0 +1,10 @@
+[submodule "qpid"]
+	path = qpid
+	url = https://github.com/LivepoolQ/Project-Qpid
+	branch = toy_gp
+[submodule "playground"]
+	path = playground
+	url = https://github.com/cocoon2wong/Project-Solitaire
+[submodule "dataset_original"]
+	path = dataset_original
+	url = https://github.com/cocoon2wong/Project-Luna

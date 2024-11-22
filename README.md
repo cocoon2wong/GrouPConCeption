@@ -1,5 +1,6 @@
-# Who Walks With You Matters: Perceiving Social Interactions with Groups for Pedestrian Trajectory Prediction.
+# Code of GrouPConCeption
 
+This is the official code of manuscript *Who Walks With You Matters: Perceiving Social Interactions with Groups for Pedestrian Trajectory Prediction*. The paper will be available on arXiv soon.
 
 ## Environment Configuration
 
@@ -19,46 +20,42 @@ The datasets (**ETH-UCY, SDD, NBA, nuScenes**) are preprocessed and provided in 
 
 ### Pre-trained Model Weights
 
-The pre-trained model weights of different datasets (**ETH-UCY, SDD, NBA, nuScenes**) are provided at:
-```none
-./weights/
-|___group_eth/
-|___group_hotel/
-|___group_nba50k/
-|___group_nuScenes_ov_best_of_5/
-|___group_nuScenes_ov_best_of_10/
-|___group_sdd/
-|___group_univ13/
-|___group_zara1/
-|___group_zara2/
-```
+The pre-trained model weights of different datasets (**ETH-UCY, SDD, NBA, nuScenes**) are available [here](https://github.com/LivepoolQ/GrouPConCeption/releases/tag/v0.1).
+
 Run the following command to evaluate these pre-trained weights:
+
 ```bash
 python main.py --load ./weights/group_{dataset}
 ```
+
 ## Training
-Run the following command to train the **GPCC** model from the beginning:
+
+Run the following command to train the typical `gp` model from the beginning:
+
 ```bash
-python main.py --model gp_msn --split {dataset} --batchsize {batchsize} --lr {lr}
+python main.py --model gp --split SPLIT 
 ```
-This command uses the original variation (v0 corresponding to the paper) GPCC model to train.
+
+`SPLIT` is a train-test-val split of the dataset.
+Arg `--split` accepts {`eth`, `hotel`, `univ13`, `zara1`, `zara2`} (ETH-UCY), {`sdd`} (SDD), {`nba50k`} (NBA), {`nuScenes_ov_v1.0`} (nuScenes).
 Add args to train variational (corresponding to the ablation study in the paper) GPCC model.
 
 ### Args
+
 - `--split` (short for `-s`): type=`str`, argtype=`static`.
- The dataset split that used to train and evaluate. 
+ The dataset split that used to train and evaluate.
  The default value is `zara1`.
 - `--gpu`: type=`str`, argtype=`temporary`.
-Speed up training or test if you have at least one NVidia GPU. If you have no GPUs or want to run the code on your CPU, please set it to `-1`. NOTE: It only supports training or testing on one GPU. 
+Speed up training or test if you have at least one NVidia GPU. If you have no GPUs or want to run the code on your CPU, please set it to `-1`. NOTE: It only supports training or testing on one GPU.
 The default value is `0`.
 - `--epochs`: type=`int`, argtype=`static`.
  Maximum training epochs. 
  The default value is `500`.
 - `--batch_size` (short for `-bs`): type=`int`, argtype=`dynamic`.
- Batch size when implementation. 
+ Batch size when implementation.
  The default value is `5000`.
 - `--lr` (short for `-lr`): type=`float`, argtype=`static`.
- Learning rate. 
+ Learning rate.
  The default value is `0.001`.
 - `--use_group`: type=`int`, argtype=`STATIC`.
  Choose whether to use pedestrian groups when calculating Conception.
@@ -70,11 +67,11 @@ The default value is `0`.
  Choose whether to use view angle in calculating Conception.
  The default value is `1`.
 - `--use_pooling`: type=`int`, argtype=`STATIC`.
- Choose whether to use pooling in calculating conception value. 
+ Choose whether to use pooling in calculating conception value.
  Only choose one between pooling and max.
  The default value is `1`.
 - `--use_max`: type=`int`, argtype=`STATIC`.
- Choose whether to use max in calculating conception value. 
+ Choose whether to use max in calculating conception value.
  Only choose one between pooling and max.
  The default value is `0`.
 - `--output_units`: type=`int`, argtype=`STATIC`.
@@ -97,26 +94,32 @@ Number of multi-style generation.
 The default value is `20`.
 
 Add args above to train specific GPCC model as the following command:
+
 ```bash
-python main.py --model gp_msn --split {dataset} --batchsize {batchsize} --lr {lr} --{Arg} arg --{Arg} arg ... --{Arg} arg
+python main.py --model gp --split {dataset} --batchsize {batchsize} --lr {lr} --{Arg} arg --{Arg} arg ... --{Arg} arg
 ```
 
 If no arg is detected, the model will use the default settings:
+
 ```bash
-python main.py --model gp_msn
+python main.py --model gp
 ```
 
 Continue to train from checkpoints or pre-trained weights using this command:
+
 ```bash
 python main.py --restore_args {checkpoint/weight_file}
 ```
 
 ## Visualization
+
 Run the following command to run a visualization demo:
+
 ```bash
 python playground/main.py
 ```
+
 Reload model weights in the demo and visualize them.
-The output file is stored in `temp_files`.
-Release visualization code commented out in `gp_msn.py` and `conception.py` to see results of attention value and contribution ratio demonstrated in the paper.
-The output file is stored in `temp_files/gp`. 
+The output file is stored in `temp_files/playground`.
+Uncomment visualization codes commented out in `gp.py` and `conception.py` to see results of attention value and contribution ratio demonstrated in the paper.
+The output file is stored in `temp_files/gp`.

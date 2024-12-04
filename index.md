@@ -18,7 +18,7 @@ Click the buttons below for more information.
     <!-- <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong/SocialCirclePlus">📖 Supplemental Materials (TBA)</a>
     <br><br> -->
     <a class="btn btn-colorful btn-lg" href="https://github.com/livepoolq/groupconception">🛠️ Codes (PyTorch)</a>
-    <a class="btn btn-colorful btn-lg" href="/guidelines">💡 Codes Guidelines</a>
+    <a class="btn btn-colorful btn-lg" href="./guidelines">💡 Codes Guidelines</a>
     <br><br>
 </div>
 

@@ -126,23 +126,23 @@ navbar-var-length: false
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-navbar-col: "#278157"
+navbar-col: "#BC5C2C"
 navbar-float-col: "rgba(70, 70, 70, 0.599)"
 navbar-text-col: "#FFFFFF"
 navbar-border-col: "#DDDDDD"
 page-col: "#FFFFFF"
 text-col: "#404040"
-link-col: "#359266"
-hover-col: "#60da93"
+link-col: "#BC5C2C"
+hover-col: "#E27E47"
 footer-col: "#EAEAEA"
 footer-text-col: "#777777"
 footer-link-col: "#404040"
-footer-hover-col: "#60da93"
+footer-hover-col: "#E27E47"
 
 # Button colors
-button-hover-color: "#359266"
+button-hover-color: "#BC5C2C"
 button-hover-text-color: "#FFFFFF"
-button-active-color: "#0e693e"
+button-active-color: "#AF5C2C"
 button-active-text-color: "#FFFFFF"
 
 

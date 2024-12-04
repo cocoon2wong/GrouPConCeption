@@ -10,15 +10,15 @@ cover-img: /subassets/img/head_pic.png
 This is the homepage of our paper "Who Walks With You Matters: Perceiving Social Interactions with Groups for Pedestrian Trajectory Prediction".
 
 In this work, we propose the [GrouPConCeption](https://github.com/livepoolq/groupconception) model (GPCC) handling group relations and social interactions among agents.
-The paper will be available on arXiv soon.
+The paper is available at [arXiv](http://arxiv.org/abs/2412.02395).
 Click the buttons below for more information.
 
 <div style="text-align: center;">
-    <a class="btn btn-colorful btn-lg" href="https://github.com/livepoolq/groupconception">📖 Paper</a>
+    <a class="btn btn-colorful btn-lg" href="http://arxiv.org/abs/2412.02395">📖 Paper</a>
     <!-- <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong/SocialCirclePlus">📖 Supplemental Materials (TBA)</a>
     <br><br> -->
     <a class="btn btn-colorful btn-lg" href="https://github.com/livepoolq/groupconception">🛠️ Codes (PyTorch)</a>
-    <a class="btn btn-colorful btn-lg" href="./guidelines">💡 Codes Guidelines</a>
+    <a class="btn btn-colorful btn-lg" href="/guidelines">💡 Codes Guidelines</a>
     <br><br>
 </div>
 
@@ -39,11 +39,16 @@ Understanding and anticipating human movement has become more critical and chall
 If you find this work useful, it would be grateful to cite our paper!
 
 ```bib
-TBA
+@article{zou2024who,
+  title={Who Walks With You Matters: Perceiving Social Interactions with Groups for Pedestrian Trajectory Prediction},
+  author={Zou, Ziqian and Wong, Conghao and Xia, Beihao and Peng, Qinmu and You, Xinge},
+  journal={arXiv preprint arXiv:2412.02395},
+  year={2024}
+}
 ```
 
 ## Contact us
 
+Ziqian Zou ([@LivepoolQ](https://github.com/LivepoolQ)): ziqianzoulive@icloud.com
 Conghao Wong ([@cocoon2wong](https://github.com/cocoon2wong)): conghaowong@icloud.com  
 Beihao Xia ([@NorthOcean](https://github.com/NorthOcean)): xbh_hust@hust.edu.cn  
-Ziqian Zou ([@LivepoolQ](https://github.com/LivepoolQ)): ziqianzoulive@icloud.com

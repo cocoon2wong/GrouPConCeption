@@ -126,7 +126,7 @@ navbar-var-length: false
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-navbar-col: "#BC5C2C"
+navbar-col: "#BC5C2CAA"
 navbar-float-col: "rgba(70, 70, 70, 0.599)"
 navbar-text-col: "#FFFFFF"
 navbar-border-col: "#DDDDDD"
